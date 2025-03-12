@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PH Tube</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    
+    <header>
+        <nav class="w-10/12 flex justify-between items-center mx-auto py-4 mt-3 border-b-1 border-gray-400">
+            <div>
+                <img class="w-40 h-9" src="Logo.png" alt="">
+            </div>
+            <div>
+                <button class="btn btn-soft">Sort by view</button>
+            </div>
+            <div>
+                <button class="btn btn-soft bg-[#FF1F3D] text-white">Blog</button>
+            </div>
+        </nav>
+        <div id="btn-holder" class="flex justify-center my-4 space-x-3">
+            <button class="btn btn-soft bg-[#FF1F3D] text-white">All</button>
+        </div>
+    </header>
+    <main id="videoContainer" class="w-10/12 mx-auto grid grid-cols-4 gap-3">
+        
+        <!-- <div class="card bg-base-100  shadow-sm">
+            <figure class="relative">
+              <img src="https://i.ibb.co/QPNzYVy/moonlight.jpg" >
+              <span class="absolute bottom-2 right-2 bg-black text-white rounded text-sm px-2 py-1">3hours 56min ago</span>
+            </figure>
+            <div class="flex mt-4 gap-x-3 pl-1">
+              <div>
+                <div class="avatar">
+                    <div class="ring-primary ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
+                      <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    </div>
+                  </div>
+              </div>
+              <div>
+                <h2 class="text-base font-semibold">Laugh at My Pain</h2>
+                <p class="text-gray-400 text-sm flex gap-3 items-center">awlad hosen <img class="w-6 h-6" src="https://img.icons8.com/?size=96&id=D9RtvkuOe31p&format=png" alt=""></p>
+                <p class="text-gray-400 text-sm">91k views</p>
+              </div>
+            </div>
+          </div>  -->
+        
+    </main>
+    <script src="script/youtube.js"></script>
 </body>
 </html>
