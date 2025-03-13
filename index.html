@@ -6,6 +6,12 @@
     <title>PH Tube</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <style>
+        .active{
+          background-color: #FF1F3D;
+          color: white;
+        }
+      </style>
 </head>
 <body>
     <header>
@@ -21,10 +27,10 @@
             </div>
         </nav>
         <div id="btn-holder" class="flex justify-center my-4 space-x-3">
-            <button class="btn btn-soft bg-[#FF1F3D] text-white">All</button>
+            <button id="btnAll" onclick="loadVideos()" class="btn btn-soft">All</button>
         </div>
     </header>
-    <main id="videoContainer" class="w-10/12 mx-auto grid grid-cols-4 gap-3">
+    <main id="videoContainer" class="w-11/12 lg:w-10/12 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3">
         
         <!-- <div class="card bg-base-100  shadow-sm">
             <figure class="relative">
@@ -46,7 +52,10 @@
               </div>
             </div>
           </div>  -->
-        
+        <div class="col-span-full flex justify-center items-center flex-col py-4">
+          <img src="Icon.png" alt="">
+          <h2>Oops!! Sorry, There is no content here</h2>
+        </div>
     </main>
     <script src="script/youtube.js"></script>
 </body>

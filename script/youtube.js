@@ -1,4 +1,13 @@
 
+function removeActiveClass(){
+    const activeButtons = document.getElementsByClassName('active')
+    // console.log(activeButtons)
+    for(let btn of activeButtons)(
+      // console.log(btn)
+      btn.classList.remove("active")
+    )
+}
+
 function loadCatagories(){
     fetch(' https://openapi.programming-hero.com/api/phero-tube/categories')
         .then((res)=>res.json())
@@ -7,13 +16,13 @@ function loadCatagories(){
         })
 }
   
-function displayCategories(categories){
+function displayCategories(catagories){
     const btnHolder = document.getElementById('btn-holder')
-    
-    for(let cat of categories){
+    for(let cat of catagories){
+        // console.log(cat)
         const categoryDiv = document.createElement('div')
         categoryDiv.innerHTML=`
-        <button class="btn btn-soft hover:bg-red-500 hover:text-white">${cat.category}</button>        
+        <button id="btn-${cat.category_id}"  onclick="displayCategoriesVideos(${cat.category_id})" class="btn btn-soft hover:bg-red-500 hover:text-white">${cat.category}</button>        
         `
         btnHolder.appendChild(categoryDiv)
     }
@@ -23,38 +32,25 @@ function displayCategories(categories){
 const loadVideos=async ()=>{
     const fetchData=await fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
     const data = await fetchData.json()
+    removeActiveClass()
+    document.getElementById('btnAll').classList.add("active")
     displayVideos(data.videos)
 } 
-// {category_id: '1001', video_id: 'aaaa', thumbnail: 'https://i.ibb.co/L1b6xSq/shape.jpg', title: 'Shape of You', authors: Array(1), …}
-// authors
-// : 
-// [{…}]
-// category_id
-// : 
-// "1001"
-// description
-// : 
-// "Dive into the rhythm of 'Shape of You,' a captivating track that blends pop sensibilities with vibrant beats. Created by Olivia Mitchell, this song has already gained 100K views since its release. With its infectious melody and heartfelt lyrics, 'Shape of You' is perfect for fans looking for an uplifting musical experience. Let the music take over as Olivia's vocal prowess and unique style create a memorable listening journey."
-// others
-// : 
-// {views: '100K', posted_date: '16278'}
-// thumbnail
-// : 
-// "https://i.ibb.co/L1b6xSq/shape.jpg"
-// title
-// : 
-// "Shape of You"
-// video_id
-// : 
-// "aaaa"
-// [[Prototype]]
-// : 
-// Object
+
 const displayVideos = (videos)=>{
     const videoContainer =document.getElementById('videoContainer')
-//    console.log(videoContainer)
+    videoContainer.innerHTML= ""
+
+    if(videos.length === 0){
+      videoContainer.innerHTML = `
+       <div class="col-span-full flex justify-center items-center flex-col py-4">
+          <img src="Icon.png" alt="">
+          <h2>Oops!! Sorry, There is no content here</h2>
+        </div>
+      `
+      // return
+    }
     videos.forEach(element => {
-        // console.log(element)
         const videosDiv = document.createElement('div')
         videosDiv.innerHTML = `
     <div class="card bg-base-100">
@@ -83,5 +79,18 @@ const displayVideos = (videos)=>{
 
 }
 
+const displayCategoriesVideos = (id) =>{
+   const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`
+//    console.log(url)
+    fetch(url)
+    .then(Response => Response.json())
+    .then(data => {
+      removeActiveClass()
+      const clickedbtn = document.getElementById(`btn-${id}`)
+      clickedbtn.classList.add("active")
+      // console.log(clickedbtn)
+      displayVideos(data.category)
+    })
+}
+
 loadCatagories()
-loadVideos()
